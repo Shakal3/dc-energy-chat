@@ -7,6 +7,7 @@
     --primary-color: #2dd4bf;        /* Dark teal */
     --primary-dark: #0f766e;         /* Darker teal */
     --primary-light: #5eead4;        /* Light teal */
+    --primary-rgb: 45, 212, 191;     /* RGB values for primary color */
     --accent-color: #06b6d4;         /* Cyan accent */
     --success-color: #10b981;        /* Emerald */
     --error-color: #ef4444;          /* Red */
@@ -395,25 +396,592 @@ nav ul li a:focus {
     border-left-color: var(--primary-color);
 }
 
-.next-steps {
-    margin-top: 1rem;
+/* Rich Content Formatting */
+.rich-content h3.response-header {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem 0;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.25rem;
 }
 
-.next-steps strong {
+.rich-content h4.response-subheader {
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0.25rem 0;
+}
+
+.rich-content p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.rich-content ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.rich-content li {
+    margin: 0.25rem 0;
+}
+
+.rich-content strong {
     color: var(--primary-color);
-    font-size: 0.9rem;
     font-weight: 600;
 }
 
+/* Data Grid Layout */
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.data-item {
+    background: var(--bg-elevated);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.data-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.data-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Charts and Visualizations */
+.charts-section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--bg-elevated);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.charts-section h5 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chart-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--bg-surface);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.chart-container h6 {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+}
+
+.chart-placeholder {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    border-radius: var(--border-radius);
+    border: 2px dashed var(--border-color);
+}
+
+.chart-data {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0.5rem 0 0 0;
+}
+
+/* Device Power Bars */
+.device-bars {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem;
+    min-height: 120px;
+}
+
+.device-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 60px;
+}
+
+.bar-fill {
+    width: 30px;
+    background: linear-gradient(to top, var(--primary-color), var(--primary-light));
+    border-radius: 4px 4px 0 0;
+    min-height: 10px;
+    transition: var(--transition);
+}
+
+.device-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.power-value {
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Cost Scenario Bars */
+.cost-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+.cost-scenario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.scenario-label {
+    min-width: 80px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.cost-bar {
+    flex: 1;
+    height: 24px;
+    background: var(--bg-surface);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.cost-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-light));
+    border-radius: 12px;
+    transition: width 0.8s ease;
+}
+
+.cost-value {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Forecast Chart Styles */
+.forecast-chart {
+    background: var(--bg-elevated);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.power-legend {
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.cost-legend {
+    width: 14px;
+    height: 14px;
+    background: #ff7043;
+    border-radius: 3px;
+}
+
+.forecast-timeline {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px; /* Increased from 120px */
+    padding: 1.5rem 1rem;
+    background: var(--bg-surface);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    gap: 4px; /* Increased gap */
+    border: 1px solid var(--border-color);
+}
+
+
+
+
+
+.chart-summary {
+    margin: 1.5rem 0 0 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(var(--primary-rgb), 0.05);
+    border-radius: var(--border-radius);
+}
+
+/* Forecast Chart with Y-Axis - Enhanced */
+.forecast-chart-wrapper {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    background: var(--bg-surface);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    min-height: 280px; /* Increased height significantly */
+}
+
+.y-axis-left,
+.y-axis-right {
+    width: 110px; /* Increased width for maximum spacing */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 0.5rem; /* Reduced horizontal padding */
+    background: linear-gradient(to right, rgba(45, 212, 191, 0.03), transparent);
+}
+
+.y-axis-right {
+    background: linear-gradient(to left, rgba(255, 112, 67, 0.03), transparent);
+}
+
+.y-axis-title {
+    position: absolute;
+    top: 50%;
+    left: -8px; /* Moved further left */
+    transform: translateY(-50%) rotate(-90deg);
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.y-axis-right .y-axis-title {
+    left: auto;
+    right: -2px; /* Moved to the very edge */
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.power-axis-title {
+    color: var(--primary-color);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    background: rgba(45, 212, 191, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.cost-axis-title {
+    color: #ff7043;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    background: rgba(255, 112, 67, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.y-axis-label {
+    position: absolute;
+    width: calc(100% - 60px); /* Account for maximum title space */
+    left: 55px; /* Move labels much further away from titles */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    margin: -10px 0;
+}
+
+.y-axis-right .y-axis-label {
+    left: 5px; /* Different positioning for right axis */
+    right: 55px; /* Move labels much further away from right title */
+    width: calc(100% - 60px);
+}
+
+.power-axis-text {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    background: var(--bg-surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    min-width: 40px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cost-axis-text {
+    font-size: 0.7rem;
+    color: #ff7043;
+    font-weight: 600;
+    background: var(--bg-surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 112, 67, 0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    min-width: 40px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.forecast-chart-wrapper .forecast-timeline {
+    flex: 1;
+    border: none;
+    background: transparent;
+    margin: 0 1rem; /* Increased margin */
+    height: auto; /* Let wrapper control height */
+    min-height: 220px; /* Ensure minimum height */
+    position: relative;
+}
+
+/* Enhanced bar interactions */
+.forecast-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 35px;
+    gap: 0.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.forecast-bar-group:hover {
+    transform: translateY(-2px);
+}
+
+.forecast-bar-group:hover .power-bar,
+.forecast-bar-group:hover .cost-bar {
+    filter: brightness(1.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.forecast-bars {
+    display: flex;
+    align-items: flex-end;
+    height: 140px;
+    gap: 3px;
+    position: relative;
+}
+
+.forecast-chart .power-bar {
+    width: 10px;
+    background: linear-gradient(to top, var(--primary-color), var(--primary-light));
+    border-radius: 4px 4px 0 0;
+    min-height: 3px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.forecast-chart .cost-bar {
+    width: 10px;
+    background: linear-gradient(to top, #ff7043, #ffab91);
+    border-radius: 4px 4px 0 0;
+    min-height: 3px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.forecast-chart .power-bar:hover,
+.forecast-chart .cost-bar:hover {
+    opacity: 0.9;
+    cursor: pointer;
+    transform: scaleY(1.05) scaleX(1.2);
+}
+
+/* Tooltip styles for bars */
+.forecast-bar-group::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.9);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.forecast-bar-group:hover::before {
+    opacity: 1;
+}
+
+.time-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    white-space: nowrap;
+    margin-top: 0.5rem;
+    padding: 2px 4px;
+    background: rgba(var(--bg-elevated), 0.7);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.forecast-bar-group:hover .time-label {
+    background: var(--primary-color);
+    color: var(--bg-primary);
+    transform: scale(1.05);
+}
+
+/* Insights Section */
+.insights-section {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(var(--primary-rgb), 0.05));
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.insights-section h5 {
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.insights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.insights-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.insights-list li:last-child {
+    border-bottom: none;
+}
+
+.insights-list li:before {
+    content: "💡";
+    margin-right: 0.5rem;
+}
+
+/* Forecast Summary */
+.forecast-summary {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+    border-radius: var(--border-radius);
+    border-left: 4px solid #4CAF50;
+}
+
+.forecast-summary h5 {
+    color: #4CAF50;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Next Steps Enhancement */
+.next-steps {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--bg-elevated);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--accent-color);
+}
+
+.next-steps h5 {
+    color: var(--accent-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .next-steps ul {
-    margin: 0.75rem 0;
-    padding-left: 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .next-steps li {
-    margin: 0.5rem 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.next-steps li:last-child {
+    border-bottom: none;
+}
+
+.next-steps li:before {
+    content: "▶";
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
 }
 
 /* Typing Indicator */
@@ -794,4 +1362,46 @@ nav ul li a:focus {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+} 
+
+/* Responsive Design for Charts */
+@media (max-width: 768px) {
+    .data-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.75rem;
+    }
+    
+    .device-bars {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .cost-scenario {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .cost-bar {
+        width: 100%;
+    }
+    
+    .scenario-label {
+        min-width: auto;
+    }
+}
+
+/* Animation for Chart Elements */
+.device-bar:hover .bar-fill {
+    transform: scaleY(1.1);
+    filter: brightness(1.1);
+}
+
+.data-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.chart-container:hover {
+    border-color: var(--primary-color);
 } 
