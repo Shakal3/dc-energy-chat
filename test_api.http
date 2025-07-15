@@ -1,0 +1,39 @@
+### Test DC Energy Chat API
+
+# Health Check
+GET http://localhost:5000/health
+
+###
+
+# Chat API Info (GET)
+GET http://localhost:5000/chat
+
+###
+
+# Chat Query - General Question  
+POST http://localhost:5000/chat
+Content-Type: application/json
+
+{
+  "query": "Hello, what can you help me with?"
+}
+
+###
+
+# Chat Query - Energy Cost Forecast
+POST http://localhost:5000/chat
+Content-Type: application/json
+
+{
+  "query": "What will my energy costs be next week?"
+}
+
+###
+
+# Chat Query - Power Usage Question
+POST http://localhost:5000/chat
+Content-Type: application/json
+
+{
+  "query": "Show me power consumption for server-001"
+} 

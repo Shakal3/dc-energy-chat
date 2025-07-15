@@ -1,0 +1,24 @@
+# Flask web framework and core dependencies
+flask==3.0.0
+gunicorn==21.2.0
+
+# Data processing and analytics
+pandas>=2.0.0
+numpy>=1.21.0
+
+# AI/ML for embeddings and chat features
+sentence-transformers==2.2.2
+
+# Database and ORM
+sqlalchemy==2.0.21
+psycopg2-binary==2.9.7
+
+# Testing
+pytest==7.4.2
+pytest-flask==1.2.0
+
+# Environment and configuration
+python-dotenv==1.0.0
+
+# HTTP requests and utilities
+requests==2.31.0

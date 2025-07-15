@@ -1,0 +1,5 @@
+[
+  "tests/test_cost_engine.py::TestCostEngine::test_cost_forecast_returns_correct_columns",
+  "tests/test_cost_engine.py::TestCostEngine::test_cost_forecast_with_empty_data",
+  "tests/test_cost_engine.py::TestCostEngine::test_validate_forecast_accuracy_structure"
+]

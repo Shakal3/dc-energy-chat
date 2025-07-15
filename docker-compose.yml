@@ -1,0 +1,61 @@
+# Docker Compose for DC Energy Chat application
+# TODO: Add production security configs (secrets, non-root users)
+# TODO: Configure TimescaleDB with proper retention policies
+# TODO: Add Redis for caching and Nginx for load balancing
+
+version: '3.8'
+
+services:
+  # Main Flask API service
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=${FLASK_ENV}
+      - DB_URL=${DB_URL}
+      - SECRET_KEY=${SECRET_KEY}
+    volumes:
+      - ./data:/data  # Mount data directory for CSV files
+      - ./logs:/app/logs  # Mount logs directory
+    depends_on:
+      - timescale
+    networks:
+      - dc-energy-net
+    restart: unless-stopped
+    command: gunicorn --bind 0.0.0.0:5000 --workers 2 "chat_api.app:create_app()"
+
+  # TimescaleDB for time-series telemetry data  
+  timescale:
+    image: timescale/timescaledb:latest-pg15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}  
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - timescale_data:/var/lib/postgresql/data
+      - ./docker/timescaledb/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - dc-energy-net
+    restart: unless-stopped
+
+  # Placeholder for OpenDCIM integration (TODO: implement later)
+  dcim:
+    image: alpine:latest
+    command: ["sh", "-c", "echo 'OpenDCIM integration placeholder' && sleep infinity"]
+    volumes:
+      - ./docker/opendcim:/opendcim-config
+    networks:
+      - dc-energy-net
+    restart: unless-stopped
+
+networks:
+  dc-energy-net:
+    driver: bridge
+
+volumes:
+  timescale_data: 

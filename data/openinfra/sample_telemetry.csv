@@ -1,0 +1,16 @@
+timestamp,device_id,location,data_center,power_kw,voltage_v,current_a
+2024-01-01T00:00:00Z,server-001,rack-a1,dc-north,2.5,220,11.4
+2024-01-01T00:05:00Z,server-001,rack-a1,dc-north,2.7,220,12.3
+2024-01-01T00:10:00Z,server-001,rack-a1,dc-north,2.4,220,10.9
+2024-01-01T00:15:00Z,server-001,rack-a1,dc-north,2.8,220,12.7
+2024-01-01T00:20:00Z,server-001,rack-a1,dc-north,2.6,220,11.8
+2024-01-01T00:00:00Z,server-002,rack-a2,dc-north,3.1,220,14.1
+2024-01-01T00:05:00Z,server-002,rack-a2,dc-north,3.3,220,15.0
+2024-01-01T00:10:00Z,server-002,rack-a2,dc-north,2.9,220,13.2
+2024-01-01T00:15:00Z,server-002,rack-a2,dc-north,3.2,220,14.5
+2024-01-01T00:20:00Z,server-002,rack-a2,dc-north,3.0,220,13.6
+2024-01-01T00:00:00Z,switch-001,rack-b1,dc-north,0.8,220,3.6
+2024-01-01T00:05:00Z,switch-001,rack-b1,dc-north,0.9,220,4.1
+2024-01-01T00:10:00Z,switch-001,rack-b1,dc-north,0.7,220,3.2
+2024-01-01T00:15:00Z,switch-001,rack-b1,dc-north,0.8,220,3.6
+2024-01-01T00:20:00Z,switch-001,rack-b1,dc-north,0.9,220,4.1 

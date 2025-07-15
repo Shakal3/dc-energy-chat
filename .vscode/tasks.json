@@ -1,0 +1,114 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run-api",
+            "type": "shell",
+            "command": "python",
+            "args": ["-m", "chat_api.app"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "FLASK_ENV": "development",
+                    "PYTHONPATH": "${workspaceFolder}"
+                }
+            },
+            "detail": "Start Flask development server on port 5000"
+        },
+        {
+            "label": "run-tests",
+            "type": "shell", 
+            "command": "pytest",
+            "args": ["-v", "tests/"],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder}"
+                }
+            },
+            "detail": "Run all pytest unit tests"
+        },
+        {
+            "label": "docker-up",
+            "type": "shell",
+            "command": "docker",
+            "args": ["compose", "up", "-d"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "detail": "Start all Docker services in background"
+        },
+        {
+            "label": "docker-down",
+            "type": "shell",
+            "command": "docker", 
+            "args": ["compose", "down"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "detail": "Stop and remove all Docker containers"
+        },
+        {
+            "label": "docker-logs",
+            "type": "shell",
+            "command": "docker",
+            "args": ["compose", "logs", "-f"],
+            "group": "build", 
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "detail": "Follow Docker container logs"
+        },
+        {
+            "label": "install-deps",
+            "type": "shell",
+            "command": "pip",
+            "args": ["install", "-r", "requirements.txt"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always", 
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "detail": "Install Python dependencies from requirements.txt"
+        }
+    ]
+} 

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Energy Chat - OpenInfra Power Assistant</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Inter Font for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- JetBrains Mono for code -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="static/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="blue darken-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">
+                <i class="material-icons left">flash_on</i>
+                DC Energy Chat
+            </a>
+            
+            <!-- Desktop Menu -->
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#" id="health-check" title="Check API Connection Status" data-tooltip="Check if the backend API is running">
+                    <i class="material-icons">wifi</i>
+                </a></li>
+                <li><a href="#" id="export-chat" title="Export Chat History" data-tooltip="Download conversation as JSON">
+                    <i class="material-icons">download</i>
+                </a></li>
+                <li><a href="#" id="clear-chat" title="Clear All Messages" data-tooltip="Remove all messages from this conversation">
+                    <i class="material-icons">delete_sweep</i>
+                </a></li>
+                <li><a href="#" id="demo-mode" title="Demo Mode" data-tooltip="Try the interface with sample responses">
+                    <i class="material-icons">play_circle_outline</i>
+                </a></li>
+            </ul>
+            
+            <!-- Mobile Menu Trigger -->
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Mobile Side Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <div style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); height: 100%;"></div>
+                </div>
+                <a href="#"><i class="material-icons circle white-text">flash_on</i></a>
+                <a href="#"><span class="white-text name">DC Energy Chat</span></a>
+                <a href="#"><span class="white-text email">OpenInfra Power Assistant</span></a>
+            </div>
+        </li>
+        <li><a href="#" class="mobile-quick-query" data-query="What are my current energy costs?">
+            <i class="material-icons">attach_money</i>Energy Costs
+        </a></li>
+        <li><a href="#" class="mobile-quick-query" data-query="Show me power consumption for server-001">
+            <i class="material-icons">computer</i>Server Power
+        </a></li>
+        <li><a href="#" class="mobile-quick-query" data-query="Forecast energy usage for next week">
+            <i class="material-icons">trending_up</i>Forecast
+        </a></li>
+        <li><a href="#" class="mobile-quick-query" data-query="Show me OpenInfra telemetry data">
+            <i class="material-icons">analytics</i>Telemetry
+        </a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#" id="mobile-health-check">
+            <i class="material-icons">wifi</i>Check API Status
+        </a></li>
+        <li><a href="#" id="mobile-export-chat">
+            <i class="material-icons">download</i>Export Chat
+        </a></li>
+        <li><a href="#" id="mobile-clear-chat">
+            <i class="material-icons">delete_sweep</i>Clear Messages
+        </a></li>
+        <li><a href="#" id="mobile-demo-mode">
+            <i class="material-icons">play_circle_outline</i>Demo Mode
+        </a></li>
+    </ul>
+
+    <!-- Main Container -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar (Desktop) -->
+            <div class="col s12 m3 l2 sidebar hide-on-small-only">
+                <div class="collection">
+                    <div class="collection-header">
+                        <h6>Quick Actions</h6>
+                    </div>
+                    <a href="#" class="collection-item quick-query" data-query="What are my current energy costs?" title="Ask about current energy expenses">
+                        <i class="material-icons tiny left">attach_money</i>
+                        Energy Costs
+                    </a>
+                    <a href="#" class="collection-item quick-query" data-query="Show me power consumption for server-001" title="View server power usage">
+                        <i class="material-icons tiny left">computer</i>
+                        Server Power
+                    </a>
+                    <a href="#" class="collection-item quick-query" data-query="Forecast energy usage for next week" title="Predict future energy needs">
+                        <i class="material-icons tiny left">trending_up</i>
+                        Forecast
+                    </a>
+                    <a href="#" class="collection-item quick-query" data-query="Show me OpenInfra telemetry data" title="View telemetry dashboard">
+                        <i class="material-icons tiny left">analytics</i>
+                        Telemetry
+                    </a>
+                </div>
+                
+                <!-- Connection Status Card -->
+                <div class="card-panel center-align">
+                    <i class="material-icons small" id="status-icon">wifi_off</i>
+                    <p>
+                        <small id="connection-status">Disconnected</small>
+                    </p>
+                    <div class="connection-details">
+                        <small id="connection-details">Static demo mode</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="col s12 m9 l10 chat-container">
+                <!-- Welcome Message -->
+                <div class="card-panel" id="welcome-panel">
+                    <h5>
+                        <i class="material-icons left">chat</i>
+                        Welcome to DC Energy Chat
+                    </h5>
+                    <p>Ask me about your data center energy consumption, costs, and forecasts. I can help analyze OpenInfra telemetry data and predict future usage patterns.</p>
+                    <div class="chip-container">
+                        <div class="chip">
+                            <i class="material-icons tiny">lightbulb_outline</i>
+                            Try: "What are my energy costs?"
+                        </div>
+                        <div class="chip">
+                            <i class="material-icons tiny">play_circle_outline</i>
+                            Enable demo mode for sample responses
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Area -->
+                <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-label="Chat conversation">
+                    <!-- Messages will be added here dynamically -->
+                </div>
+
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <div class="chat-bubble received">
+                        <div class="bubble-content">
+                            <div class="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="message-info">
+                                <small>AI is thinking...</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Input Area -->
+    <div class="input-area">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="input-field">
+                        <textarea 
+                            id="user-input" 
+                            class="materialize-textarea" 
+                            placeholder="Ask about energy costs, power consumption, or forecasts..."
+                            aria-label="Type your message here"
+                            maxlength="500"
+                            rows="1"
+                        ></textarea>
+                        <label for="user-input">Message</label>
+                        <button 
+                            class="btn-floating btn-large send-btn" 
+                            id="send-btn"
+                            type="button"
+                            title="Send Message (Enter)"
+                            aria-label="Send message"
+                            disabled
+                        >
+                            <i class="material-icons">send</i>
+                        </button>
+                    </div>
+                    <div class="input-footer">
+                        <div class="input-counter">
+                            <span id="char-count">0</span>/500
+                        </div>
+                        <div class="input-help">
+                            <small>Press <kbd>Enter</kbd> to send, <kbd>Shift+Enter</kbd> for new line</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="static/js/cost-calculator.js"></script>
+    <script src="static/js/app.js"></script>
+</body>
+</html> 
